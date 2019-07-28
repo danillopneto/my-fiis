@@ -41,13 +41,13 @@
                             android:hint="@string/new_filter_hint"
                             android:textColorHint="@color/primaryColor"
                             android:textColor="@color/primaryColor"
-                            android:textSize="14sp"
+                            android:textSize="18sp"
                             app:textAllCaps="true"/>
 
                     <ImageButton
                             android:id="@+id/addFiiBtn"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:background="@drawable/ic_add_circle"
                             android:layout_marginStart="10dp"
                             android:backgroundTint="@color/primaryColor"

@@ -22,7 +22,33 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setMap()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        setMap()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(getActionMenu(), menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> { finish(); return true; }
+            R.id.mMenuSettings -> openSettings()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    open fun getActionMenu(): Int {
+        return R.menu.menu_action_config
+    }
+
+    fun setMap() {
         webView = findViewById(R.id.webView)
 
         webView.settings.javaScriptEnabled = true
@@ -50,24 +76,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         webView.loadUrl("https://www.fundsexplorer.com.br/mapa-fiis")
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(getActionMenu(), menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> { finish(); return true; }
-            R.id.mMenuSettings -> openSettings()
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
-    open fun getActionMenu(): Int {
-        return R.menu.menu_action_config
     }
 
     private fun loadFromAssets(assetPath: String, mimeType: String, encoding: String): WebResourceResponse? {
