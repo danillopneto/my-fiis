@@ -59,7 +59,13 @@ class MainActivity : AppCompatActivity() {
         webView.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 injectJS()
-                var fiis = getMyPreferences().getFiis().joinToString("', '")
+
+                var fiis = ""
+                var fundos = getMyPreferences().getFiis()
+                if (fundos != null) {
+                    fiis = fundos.joinToString("', '")
+                }
+
                 webView.loadUrl(
                     "javascript:(function() { window.startMyFiis(" +
                             "['" + fiis + "']);" +
