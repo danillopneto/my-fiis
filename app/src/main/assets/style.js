@@ -1,4 +1,4 @@
-(function () {
+function () {
     window.locations = [];
 
     window.loadLocations = function(keywords) {
@@ -66,9 +66,13 @@
 
         var btnMyFiis = '<div style="text-align: center;"><button id="btnMyFiis" class="fe-input" style="margin-top: 10px;">Meus FIIs</button></div>';
         $('[id="filter-results-btn"]').after(btnMyFiis);
+        if (window.myFiis != null) {
+            loadLocations(window.myFiis);
+        }
+
         $('#btnMyFiis').off();
         $('#btnMyFiis').on('click', function() {
             loadLocations(window.myFiis);
         });
     };
-});
+}
