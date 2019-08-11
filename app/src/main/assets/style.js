@@ -1,4 +1,4 @@
-function () {
+(function () {
     window.locations = [];
 
     window.loadLocations = function(keywords) {
@@ -38,8 +38,12 @@ function () {
         var handler = Gmaps.build('Google');
 
         handler.buildMap({ internal: {id: 'map'}}, function(){
-          var markers = handler.addMarkers(locations);
-          handler.bounds.extendWith(markers);
+          for (var i = 0; i < locations.length; i++) {
+              var labelProperties = { label: { text: locations[i].marker_title, color: "white", fontFamily: 'Poppins', fontSize: "9px"} };
+              var marker = handler.addMarker(locations[i], labelProperties);
+              handler.bounds.extendWith(marker);
+          }
+
           handler.fitMapToBounds();
           if (locations.length == 1) {
             handler.getMap().setZoom(16);
@@ -67,4 +71,4 @@ function () {
             loadLocations(window.myFiis);
         });
     };
-}
+});
